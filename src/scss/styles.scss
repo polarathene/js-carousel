@@ -9,10 +9,90 @@ body {
 }
 
 //----------------------------------*\
+// ICON FONT
+//----------------------------------*/
+@font-face {
+	font-family: 'icomoon';
+	src:url('ui-font/icomoon.eot?');
+	src:url('ui-font/icomoon.eot?#iefix') format('embedded-opentype'), /* For IE6-8 */
+		url('ui-font/icomoon.ttf') format('truetype'),
+		url('ui-font/icomoon.woff') format('woff'),
+		url('ui-font/icomoon.svg?#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Support for all WebKit browsers. */
+	-webkit-font-smoothing: antialiased;
+	/* Support for Safari and Chrome. */
+	text-rendering: optimizeLegibility; // potential performance problem?
+	/* Support for Firefox. */
+	-moz-osx-font-smoothing: grayscale;
+
+	color: #ecf0f1;
+}
+
+// Selection of arrow glyphs to try out, bundled via icomoon service
+.icon-arrow-right-alt1:before {
+	content: "\e60a";
+}
+.icon-arrow-left-alt1:before {
+	content: "\e60b";
+}
+.icon-arrow-right4:before {
+	content: "\e60c";
+}
+.icon-arrow-left4:before {
+	content: "\e60d";
+}
+.icon-arrow-right2:before {
+	content: "\e600";
+}
+.icon-arrow-left2:before {
+	content: "\e601";
+}
+.icon-circle-right:before {
+	content: "\e602";
+}
+.icon-circle-left:before {
+	content: "\e603";
+}
+.icon-arrow-circle-right:before {
+	content: "\e604";
+}
+.icon-arrow-circle-left:before {
+	content: "\e605";
+}
+.icon-arrow-right:before {
+	content: "\e606";
+}
+.icon-arrow-left:before {
+	content: "\e607";
+}
+.icon-arrow-right3:before {
+	content: "\e608";
+}
+.icon-arrow-left3:before {
+	content: "\e609";
+}
+
+
+//----------------------------------*\
 // CAROUSEL
 //----------------------------------*/
+$carousel-ui-arrow-size: 40px;
 $carousel-ui-arrows-padding: 50px;
 $carousel-ui-bullet-padding: 40px;
+// colours not required, just for reference atm
 $carousel-ui-bg-sides: #16a085;
 $carousel-ui-bg-bottom: #2c3e50;
 
@@ -25,8 +105,28 @@ $carousel-height: (250px + $carousel-ui-bullet-padding);
 	height: $carousel-height; // fixed height required at present, auto breaks ui padding
 	margin: 0 auto;
 
-	background-color: $carousel-ui-bg-bottom;
+	position: relative;
+	background-color: $carousel-ui-bg-sides;
 
+	@include part(ui-arrow) {
+		width: $carousel-ui-arrows-padding;
+		font-size: $carousel-ui-arrow-size;
+		display: inline-block;
+		position: absolute;
+
+		// transform-origin doesn't seem to adjust pivot? this method will work with fixed height
+		top: (($carousel-height - $carousel-ui-bullet-padding)/2 - $carousel-ui-arrow-size/2);
+		vertical-align: middle;
+		text-align: center;
+
+		@include option(left) {
+			left: 0;
+		}
+
+		@include option(right) {
+			right: 0;
+		}
+	}
 }
 
 // container for holding slide content
@@ -38,18 +138,20 @@ $carousel-height: (250px + $carousel-ui-bullet-padding);
 	margin: 0;
 	padding: 0;
 
-	position: relative; // for ui controls
-	background-color: $carousel-ui-bg-sides;
-	bottom: $carousel-ui-bullet-padding;
+	// for ui controls
+	position: absolute;
+	left: $carousel-ui-arrows-padding;
+	right: $carousel-ui-arrows-padding;
+	background-color: $carousel-ui-bg-bottom;
 
 	@include part(item) {
 		// could define height here?
+		width: 100%;
 		height: inherit;
 
 		// make space for ui controls
 		position: absolute;
-		left: $carousel-ui-arrows-padding;
-		right: $carousel-ui-arrows-padding;
+		bottom: $carousel-ui-bullet-padding;
 
 		// for fade transition
 		opacity: 0;
