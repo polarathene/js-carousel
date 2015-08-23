@@ -91,10 +91,12 @@ body {
 //----------------------------------*/
 $carousel-ui-arrow-size: 40px;
 $carousel-ui-arrows-padding: 50px;
-$carousel-ui-bullet-padding: 40px;
+$carousel-ui-bullet-padding: 0;//30px; //set to 0 til problem fixed
 // colours not required, just for reference atm
 $carousel-ui-bg-sides: #16a085;
 $carousel-ui-bg-bottom: #2c3e50;
+$carousel-ui-bullet-inactive: #7f8c8d;
+$carousel-ui-bullet-active: #bdc3c7;
 
 $carousel-width: (580px + $carousel-ui-arrows-padding);
 $carousel-height: (250px + $carousel-ui-bullet-padding);
@@ -109,6 +111,7 @@ $carousel-height: (250px + $carousel-ui-bullet-padding);
 	background-color: $carousel-ui-bg-sides;
 
 	@include part(ui-arrow) {
+		cursor: pointer;
 		width: $carousel-ui-arrows-padding;
 		font-size: $carousel-ui-arrow-size;
 		display: inline-block;
@@ -125,6 +128,39 @@ $carousel-height: (250px + $carousel-ui-bullet-padding);
 
 		@include option(right) {
 			right: 0;
+		}
+	}
+
+	@include part(ui-bulletnav) {
+		// remove ol styles
+		list-style-type: none;
+		margin: 0 auto;
+		padding: 0;
+		bottom: 6px;
+		left:42%; // TODO: rough guess will need to center this properly later
+		position: absolute;
+
+		@include part(bullet) {
+			cursor: pointer;
+			display: inline-block; // horizontal
+			width:12px;
+			height:12px;
+			margin: 0 2px;
+			border-radius: 100%;
+			background-color: $carousel-ui-bullet-inactive;
+			text-align: center;
+
+			box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.3);
+
+
+
+			@include option(active) {
+				width: 14px;
+				height: 14px;
+				margin: -1px 1px; // TODO: probably a better way to align the bigger one?
+				background-color: $carousel-ui-bullet-active;
+
+			}
 		}
 	}
 }
@@ -152,7 +188,8 @@ $carousel-height: (250px + $carousel-ui-bullet-padding);
 		// make space for ui controls
 		position: absolute;
 		// BUG: this just pushes content out of it's bounds rather than cut into the 100% height value
-		bottom: $carousel-ui-bullet-padding;
+		// not using for now
+		//bottom: $carousel-ui-bullet-padding;
 
 		// for fade transition
 		opacity: 0;

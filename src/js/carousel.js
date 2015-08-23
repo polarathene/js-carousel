@@ -22,12 +22,14 @@ document.addEventListener('DOMContentLoaded', function(){
 	var timer_auto_transition = 5000;
 	function transition(targetIndex) {
 		// not a fan of this approach, crossfade doesn't seem right either
+		// maybe can see if z-index would work for directional issue
 		removeClass(slides[currentIndex], "fadeIn");
 		removeClass(slides[currentIndex], "fadeOut");
 		// setTimeout anonymous function references currentIndex var, allocate to a temporary var instead
 		// prevents reading the wrong value(currentIndex 1000ms from now has become targetIndex)
 		var rememberIndex = currentIndex;
 		setTimeout(function(){ removeClass(slides[rememberIndex], "\--active") }, 1000);
+		removeClass(bullets[rememberIndex], "\--active");
 		addClass(slides[currentIndex], "animated");
 		addClass(slides[currentIndex], "fadeOut");
 
@@ -35,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function(){
 		addClass(slides[targetIndex], "animated");
 		addClass(slides[targetIndex], "fadeIn");
 		addClass(slides[targetIndex], "\--active");
+		addClass(bullets[targetIndex], "\--active");
 
 		currentIndex=targetIndex;
 	}
@@ -53,6 +56,15 @@ document.addEventListener('DOMContentLoaded', function(){
 
 	ui_arrow_left[0].addEventListener('click', transition_prev, false);
 	ui_arrow_right[0].addEventListener('click', transition_next, false);
+
+	// could dynamically add these based on slides.length
+	var bullets = document.querySelectorAll('.carousel__ui-bulletnav__bullet');
+	for(var i=0; i<bullets.length; i++){
+		(function () {
+			var t = i; // needs to reallocate within closure?
+			bullets[i].addEventListener('click', function(){ transition(t) }, false);
+		}());
+	}
 
 	setInterval(function(){ transition_next(null) }, timer_auto_transition); // anonymous function best approach?
 });

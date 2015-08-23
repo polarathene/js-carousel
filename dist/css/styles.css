@@ -1,0 +1,175 @@
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src: url("ui-font/icomoon.eot?");
+  src: url("ui-font/icomoon.eot?#iefix") format("embedded-opentype"), url("ui-font/icomoon.ttf") format("truetype"), url("ui-font/icomoon.woff") format("woff"), url("ui-font/icomoon.svg?#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  color: #ecf0f1;
+}
+
+.icon-arrow-right-alt1:before {
+  content: "\e60a";
+}
+
+.icon-arrow-left-alt1:before {
+  content: "\e60b";
+}
+
+.icon-arrow-right4:before {
+  content: "\e60c";
+}
+
+.icon-arrow-left4:before {
+  content: "\e60d";
+}
+
+.icon-arrow-right2:before {
+  content: "\e600";
+}
+
+.icon-arrow-left2:before {
+  content: "\e601";
+}
+
+.icon-circle-right:before {
+  content: "\e602";
+}
+
+.icon-circle-left:before {
+  content: "\e603";
+}
+
+.icon-arrow-circle-right:before {
+  content: "\e604";
+}
+
+.icon-arrow-circle-left:before {
+  content: "\e605";
+}
+
+.icon-arrow-right:before {
+  content: "\e606";
+}
+
+.icon-arrow-left:before {
+  content: "\e607";
+}
+
+.icon-arrow-right3:before {
+  content: "\e608";
+}
+
+.icon-arrow-left3:before {
+  content: "\e609";
+}
+
+.carousel {
+  max-width: 630px;
+  height: 250px;
+  margin: 0 auto;
+  position: relative;
+  background-color: #16a085;
+}
+
+.carousel__ui-arrow {
+  cursor: pointer;
+  width: 50px;
+  font-size: 40px;
+  display: inline-block;
+  position: absolute;
+  top: 105px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.carousel__ui-arrow.\--left {
+  left: 0;
+}
+
+.carousel__ui-arrow.\--right {
+  right: 0;
+}
+
+.carousel__ui-bulletnav {
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 0;
+  bottom: 6px;
+  left: 42%;
+  position: absolute;
+}
+
+.carousel__ui-bulletnav__bullet {
+  cursor: pointer;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 2px;
+  border-radius: 100%;
+  background-color: #7f8c8d;
+  text-align: center;
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+.carousel__ui-bulletnav__bullet.\--active {
+  width: 14px;
+  height: 14px;
+  margin: -1px 1px;
+  background-color: #bdc3c7;
+}
+
+.slides {
+  height: inherit;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 50px;
+  right: 50px;
+  background-color: #2c3e50;
+}
+
+.slides__item {
+  width: 100%;
+  height: inherit;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.slides__item.\--active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.slides__item__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*# sourceMappingURL=styles.css.map */
