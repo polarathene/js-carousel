@@ -151,6 +151,7 @@ $carousel-height: (250px + $carousel-ui-bullet-padding);
 
 		// make space for ui controls
 		position: absolute;
+		// BUG: this just pushes content out of it's bounds rather than cut into the 100% height value
 		bottom: $carousel-ui-bullet-padding;
 
 		// for fade transition
