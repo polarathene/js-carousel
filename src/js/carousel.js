@@ -19,10 +19,15 @@ document.addEventListener('DOMContentLoaded', function(){
 
 	var slides = document.querySelectorAll('.slides__item');
 	var currentIndex = 0;
+	var timer_auto_transition = 5000;
 	function transition(targetIndex) {
-		// these might need checks?
+		// not a fan of this approach, crossfade doesn't seem right either
 		removeClass(slides[currentIndex], "fadeIn");
-		removeClass(slides[currentIndex], "\--active");
+		removeClass(slides[currentIndex], "fadeOut");
+		// setTimeout anonymous function references currentIndex var, allocate to a temporary var instead
+		// prevents reading the wrong value(currentIndex 1000ms from now has become targetIndex)
+		var rememberIndex = currentIndex;
+		setTimeout(function(){ removeClass(slides[rememberIndex], "\--active") }, 1000);
 		addClass(slides[currentIndex], "animated");
 		addClass(slides[currentIndex], "fadeOut");
 
@@ -48,4 +53,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
 	ui_arrow_left[0].addEventListener('click', transition_prev, false);
 	ui_arrow_right[0].addEventListener('click', transition_next, false);
+
+	setInterval(function(){ transition_next(null) }, timer_auto_transition); // anonymous function best approach?
 });
