@@ -1,0 +1,23 @@
+{
+  "name": "js-carousel",
+  "version": "1.0.0",
+  "description": "Basic carousel component to demonstrate ability/knowledge with web technologies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/polarathene/js-carousel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/polarathene/js-carousel/issues"
+  },
+  "homepage": "https://github.com/polarathene/js-carousel#readme",
+  "devDependencies": {
+    "csstyle": "^1.5.0"
+  }
+}
