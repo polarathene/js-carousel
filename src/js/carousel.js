@@ -9,12 +9,11 @@ document.addEventListener('DOMContentLoaded', function(){
 		}
 	}
 
-	//BUG classes not being removed?
 	function removeClass(el, className) {
 		if (el.classList) {
 			el.classList.remove(className);
 		} else {
-		el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+			el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
 		}
 	}
 
@@ -31,14 +30,16 @@ document.addEventListener('DOMContentLoaded', function(){
 		addClass(slides[targetIndex], "animated");
 		addClass(slides[targetIndex], "fadeIn");
 		addClass(slides[targetIndex], "\--active");
+
+		currentIndex=targetIndex;
 	}
 
 	function transition_prev(event) {
-		var targetIndex = (currentIndex==0) ? slides.length-1 : currentIndex-=1;
+		var targetIndex = (currentIndex==0) ? slides.length-1 : currentIndex-1;
 		transition(targetIndex);
 	};
 	function transition_next(event) {
-		var targetIndex = (currentIndex===slides.length-1) ? 0 : currentIndex+=1;
+		var targetIndex = (currentIndex===slides.length-1) ? 0 : currentIndex+1;
 		transition(targetIndex);
 	};
 
